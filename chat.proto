@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+
+package chat;
+
+service ChatService {
+    rpc SendMessage(Message) returns (Message) {}
+    rpc GetMessages(Connection) returns (stream Message) {}
+    rpc GetConnections(Connection) returns (ConnectionPool) {}
+    rpc AddConnection(Connection) returns (Connection) {}
+    rpc RemoveConnection(Connection) returns (Connection) {}
+}
+
+
+message Message {
+    string message = 1;
+}
+
+message Connection {
+    int32 id = 1;
+}
+
+message ConnectionPool {
+    repeated Connection connections = 1;
+}
